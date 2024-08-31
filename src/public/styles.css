@@ -1,0 +1,14 @@
+body {
+    background-color: #808080;
+}
+
+#copyright {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 2vh;
+    position: absolute;
+    bottom: -1.5ch;
+    right: 0;
+    padding-right: 5px;
+    padding-bottom: 3px;
+    font-family: "Nunito";
+}

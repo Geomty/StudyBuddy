@@ -16,7 +16,7 @@ async function handleClient(client) {
         } else if (message.type === "request") { // Client is requesting specific notes, and providing an id for the specific note
             send("note", getNote(message.data).toString());
         } else if (message.type === "save") { // Client is sending notes to be saved in the "database" (how kind of them to share)
-            saveNote({ note: message.data, description: "TODO" });
+            saveNote({ note: message.data.note, description: message.data.description});
         } else {
             send("debug", "Invalid message.");
         }

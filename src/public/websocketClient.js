@@ -28,7 +28,16 @@ ws.onmessage = event => {
             notes.innerText = message.data;
             break;
         case "list": // List of notes for the user to select from
-            notes.innerText = JSON.parse(message.data).notes.toString();
+            let list = JSON.parse(message.data).notes;
+            for (let i = 0; i < list.length; i++) {
+                let newButton = document.createElement("button");
+                newButton.innerText = list[i];
+                document.getElementById("list").appendChild(newButton);
+
+                newButton.onclick = event => {
+                    send(event, "request", i);
+                };
+            }
             break;
         default:
             console.log(`Invalid message from server: ${message.data}`);
@@ -53,11 +62,6 @@ document.getElementById("generate-question").onclick = event => {
     answer.disabled = false;
 };
 
-// document.getElementById("save-note").onclick = event => {
-//     if (!note.value) return;
-//     send(event, "save", note.value);
-// };
-
 document.getElementById("submit-answer").onclick = event => {
     if (!answer.value) return;
     send(event, "submit", answer.value);
@@ -74,9 +78,17 @@ document.addEventListener("keypress", event => {
     if (event.key == "Enter" && focused) document.getElementById("submit-answer").click();
 });
 
-// document.getElementById("request-list").onclick = event => {
-//     send(event, "reqlist");
-// };
+document.getElementById("save-note").onclick = event => {
+    if (!note.value) return;
+    send(event, "save", {
+        description: document.getElementById("description").value,
+        note: note.innerText
+    });
+};
+
+document.getElementById("request-list").onclick = event => {
+    send(event, "reqlist");
+};
 
 // document.getElementById("request-note").onclick = event => {
 //     if (!search.value) return;

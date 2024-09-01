@@ -1,5 +1,7 @@
-# RecessHacks-2024
-TODO: Description
+# StudyBuddy
+A web-based program that uses AI to generate sample problems on the user's study notes, and gives feedback based on the user's answers to the problems.
+
+Also contains a note-sharing and points system.
 
 ## Installation Instructions
 Run the following commands:
@@ -10,4 +12,4 @@ npm install
 echo API_KEY=API_KEY > .env
 node .
 ```
-Remember to get an API key for Gemini and configure the project properly.
+Remember to get an API key for Gemini.

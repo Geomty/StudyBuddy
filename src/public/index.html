@@ -3,38 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="TODO">
-    <meta name="og:title" content="GPT Study Buddy">
-    <meta name="og:description" content="TODO">
-    <title>GPT Study Buddy</title>
-    <link rel="icon" href="logo.png">
+    <meta name="description" content="A web-based program that uses AI to generate sample problems on the user's study notes, and gives feedback based on the user's answers to the problems.">
+    <meta name="og:title" content="StudyBuddy">
+    <meta name="og:description" content="A web-based program that uses AI to generate sample problems on the user's study notes, and gives feedback based on the user's answers to the problems.">
+    <title>StudyBuddy</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-green-200">
+  <body class="bg-yellow-100">
     <div class="flex flex-col gap-6 text-center">
-      <h1 class="text-[3.5rem] text-black">TODO Title</h1>
-      <p class="text-[1.5rem] text-black">TODO Description</p>
+      <h1 class="text-[3.5rem] text-black">StudyBuddy</h1>
     </div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-16">
-      <p class="text-2xl text-black">Points: <span id="points">0</span></p>
 
-      <div class="flex justify-center items-center gap-4">
-        <textarea id="note" placeholder="Paste your notes here" class="p-2 bg-green-300 resize text-lg text-black focus:outline-none rounded-xl"></textarea>
-        <button id="generate-question" class="bg-green-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Generate question</button>
-        <!-- <div><button id="save-note" class="bg-green-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Save note</button></div> -->
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-16">
+      <textarea id="note" placeholder="Paste your notes here" class="w-[25vw] h-[75vh] p-2 bg-yellow-200 resize text-lg text-black focus:outline-none rounded-xl"></textarea>
+    </div>
+
+    <div class="absolute top-1/2 left-3/4 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-10">
+      <div class="flex flex-col justify-center items-center gap-16 p-8 border-2 border-yellow-900 rounded-md">
+        <p class="text-2xl text-black">Correct answers: <span id="points">0</span></p>
+
+        <div class="flex justify-center items-center gap-4">
+          <button id="generate-question" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Generate question</button>
+        </div>
+
+        <p id="question" class="text-2xl text-black text-center"></p>
+
+        <div class="flex justify-center items-center gap-4">
+          <input id="answer" placeholder="Type your answer here" class="md:w-96 p-2 bg-yellow-200 text-xl text-black focus:outline-none rounded-xl" disabled="true">
+          <button id="submit-answer" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap" disabled="true">Submit answer</button>
+        </div>
       </div>
-
-      <p id="question" class="text-2xl text-black text-center"></p>
-
-      <div class="flex justify-center items-center gap-4">
-        <input id="answer" placeholder="Type your answer here" class="md:w-96 p-2 bg-green-300 text-xl text-black focus:outline-none rounded-xl" disabled="true">
-        <button id="submit-answer" class="bg-green-300 text-xl px-3 py-1 rounded-full text-black text-nowrap" disabled="true">Submit answer</button>
+      <div class="p-8 border-2 border-yellow-900 rounded-md flex justify-center items-center gap-4">
+        <button id="save-note" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Save note</button>
+        <input id="description" placeholder="Search for a public note" class="p-2 bg-yellow-200 text-xl text-black focus:outline-none rounded-xl"></input>
+        <button id="request-list" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Request list</button>
+        <div id="list"></div>
       </div>
-
-      <!-- <input id="search">
-      <button id="request-list">Request list</button>
-      <button id="request-note">Request note</button>
-      <p id="notes"></p> -->
     </div>
 
     <p id="copyright" class="absolute bottom-0 right-1">HackerDucks Copyright 2024</p>

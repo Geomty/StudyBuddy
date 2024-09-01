@@ -15,7 +15,7 @@ ws.onmessage = event => {
         case "question": // Question for the user to answer
             outputBox.innerText = message.data;
             break;
-        case "answer": // Correct answer to the previous question
+        case "answer": // Correct answer to the previous question and whether the user got it right
             outputBox.innerText = message.data;
             break;
         case "note": // Another user's notes that are stored on the server

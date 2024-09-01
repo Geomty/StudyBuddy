@@ -33,7 +33,7 @@ class Conversation {
     constructor(note) {
         this.note = note;
         this.messages = [];
-        this.#response("TODO: Send the notes, ask for one question about them each time a specific keyword is sent, ask for the right answer to the question and whether the user got it right each time a guess to the previous question is sent");
+        this.#response("TODO: Send the notes, ask for one question about them each time a specific keyword is sent, ask for the right answer to the question and whether the user got it right (in the format of a stringified array) each time a guess to the previous question is sent");
     }
     async generateQuestion() {
         return await this.#response("TODO: Keyword");

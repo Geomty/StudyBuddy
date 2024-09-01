@@ -52,7 +52,7 @@ document.getElementById("request-list").onclick = event => {
 };
 
 document.getElementById("request-note").onclick = event => {
-    send(event, "request", Number(inputBox.value));
+    send(event, "request", inputBox.value);
 };
 
 document.getElementById("save-note").onclick = event => {

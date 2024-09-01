@@ -9,10 +9,10 @@ function getList() {
 }
 
 function saveNote(note) {
-    let notes = JSON.parse(getList());
-    fs.writeFileSync("./src/database/note" + notes.notes.length + ".txt", note.note, "utf-8");
-    notes.notes.push(note.description);
-    fs.writeFileSync("./src/database/notes.json", JSON.stringify(notes), "utf-8");
+    let notes = JSON.parse(getList()).notes;
+    fs.writeFileSync("./src/database/note" + notes.length + ".txt", note.note);
+    notes.push(note.description);
+    fs.writeFileSync("./src/database/notes.json", JSON.stringify({ notes }));
 }
 
 module.exports = { getNote, getList, saveNote };

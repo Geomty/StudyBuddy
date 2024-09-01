@@ -131,4 +131,6 @@ dist
 
 src/.DS_Store
 .DS_Store
+
 package-lock.json
+src/database/

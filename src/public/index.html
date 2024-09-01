@@ -13,9 +13,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     </head>
     <body>
-        <input id="note">
-        <button id="generate-questions">Generate questions</button>
-        <button id="save-note">Save note</button>
+        <!-- Reference for id names -->
 
         <p id="question"></p>
         <input id="answer">
@@ -30,30 +28,29 @@
         <script src="script.js"></script>
         <script src="websocketClient.js"></script>
 
-        <div class="chat-page">
-            <div class="msg-history">
+        <!-- Final version -->
 
+        <div class="notepad">
+            <div id="tab">
+                <textarea id="notes" placeholder="Paste your notes here..."></textarea>
             </div>
-
-            <div class="send">
-                    <input type="text" class="form-control" placeholder="Type here...">
-                    <button id="send-msg"> </button>
-                </div>
-            </div>
-
         </div>
 
-        <div class="notebook">
-            <div class="text">
+        <div class="chat-page">
+            <div class="msg-history">
                 
             </div>
 
             <div class="send">
                     <input type="text" class="form-control" placeholder="Type here...">
-                    <button id="send-msg"> </button>
+                    <button id="submit-answer">Submit answer</button>
+                    <button id="generate-question">Generate a question</button>
                 </div>
             </div>
 
         </div>
+
+        
+
     </body>
 </html>

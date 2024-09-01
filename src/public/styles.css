@@ -1,6 +1,23 @@
 body {
     background-color: #E8F6F6;
+    font-family: "Lucida Console", "Courier New", monospace;
 }
+
+button {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    border-radius: 6px;
+} 
+
+#send{
+    
+}
+
+#page {
+    padding: 10px;
+    max-width: 100%;
+  }
 
 #copyright {
     color: rgba(255, 255, 255, 0.4);

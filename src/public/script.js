@@ -1,4 +1,2 @@
 // TODO
-import { useSessionStorage } from 'react';
-const MyComponent = () => {
-};
+import { useLocalStorage } from 'react';

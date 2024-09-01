@@ -42,7 +42,7 @@ function send(event, type, data) {
     ws.send(JSON.stringify(obj));
 }
 
-document.getElementById("generate-questions").onclick = event => {
+document.getElementById("generate-question").onclick = event => {
     if (!note.value) return;
     send(event, "send", note.value);
 };

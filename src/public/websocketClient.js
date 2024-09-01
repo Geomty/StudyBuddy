@@ -7,7 +7,7 @@ const note = document.getElementById("note");
 const question = document.getElementById("question");
 const answer = document.getElementById("answer");
 const search = document.getElementById("search");
-const notes = document.getElementById("notes");
+const notes = document.getElementById("note");
 
 ws.onmessage = event => {
     let message = JSON.parse(event.data);
@@ -25,9 +25,10 @@ ws.onmessage = event => {
             }
             break;
         case "note": // Another user's notes that are stored on the server
-            notes.innerText = message.data;
+            notes.value = message.data;
             break;
         case "list": // List of notes for the user to select from
+            document.getElementById("list").innerHTML = "";
             let list = JSON.parse(message.data).notes;
             for (let i = 0; i < list.length; i++) {
                 let newButton = document.createElement("button");
@@ -35,7 +36,7 @@ ws.onmessage = event => {
                 document.getElementById("list").appendChild(newButton);
 
                 newButton.onclick = event => {
-                    send(event, "request", i);
+                    send(event, "request", i+"");
                 };
             }
             break;
@@ -82,8 +83,9 @@ document.getElementById("save-note").onclick = event => {
     if (!note.value) return;
     send(event, "save", {
         description: document.getElementById("description").value,
-        note: note.innerText
+        note: note.value
     });
+    document.getElementById("description").value = "";
 };
 
 document.getElementById("request-list").onclick = event => {

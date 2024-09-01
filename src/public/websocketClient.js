@@ -20,6 +20,9 @@ ws.onmessage = event => {
             break;
         case "answer": // Correct answer to the previous question and whether the user got it right
             question.innerText = message.data;
+            if (message.data.toLowerCase().includes("correct") && !message.data.toLowerCase().includes("incorrect")) {
+                document.getElementById("points").innerText++;
+            }
             break;
         case "note": // Another user's notes that are stored on the server
             notes.innerText = message.data;

@@ -1,4 +1,4 @@
-const ws = new WebSocket('ws://'+ipAddress+':443/');
+const ws = new WebSocket('ws://'+window.location.hostname+':443/');
 ws.addEventListener("open", async () => {
     console.log("Websocket connected");
 });
@@ -29,41 +29,32 @@ ws.onmessage = event => {
     }
 }
 
-async function sendMessage(message, event) {
-    await ws.send(message);
-    event.preventDefault();
+function send(event, type, data) {
+    let obj;
+    if (data) {
+        obj = { type, data };
+    } else {
+        obj = { type };
+    }
+    ws.send(JSON.stringify(obj));
 }
 
 document.getElementById("send-note").onclick = event => {
-    sendMessage(JSON.stringify({
-        type: "send",
-        data: inputBox.value
-    }), event);
+    send(event, "send", inputBox.value);
 };
 
 document.getElementById("submit-answer").onclick = event => {
-    sendMessage(JSON.stringify({
-        type: "submit",
-        data: inputBox.value
-    }), event);
+    send(event, "submit", inputBox.value);
 };
 
 document.getElementById("request-list").onclick = event => {
-    sendMessage(JSON.stringify({
-        type: "reqlist"
-    }), event);
+    send(event, "reqlist");
 };
 
 document.getElementById("request-note").onclick = event => {
-    sendMessage(JSON.stringify({
-        type: "request",
-        data: Number(inputBox.value)
-    }), event);
+    send(event, "request", Number(inputBox.value));
 };
 
 document.getElementById("save-note").onclick = event => {
-    sendMessage(JSON.stringify({
-        type: "save",
-        data: inputBox.value
-    }), event);
+    send(event, "save", inputBox.value);
 };

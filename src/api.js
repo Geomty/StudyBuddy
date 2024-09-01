@@ -3,6 +3,7 @@ const OpenAI = require("openai");
 
 const openai = new OpenAI();
 
+/*
 async function startConversation() {
     let conversation = {
         messages: [
@@ -26,5 +27,29 @@ async function startConversation() {
     }
     return conversation.getResponse("Now give the first question");
 }
+*/
 
-module.exports = startConversation;
+class Conversation {
+    constructor(note) {
+        this.note = note;
+        this.messages = [];
+        this.#response("TODO: Send the notes, ask for one question about them each time a specific keyword is sent, ask for the right answer to the question and whether the user got it right each time a guess to the previous question is sent");
+    }
+    async generateQuestion() {
+        return await this.#response("TODO: Keyword");
+    }
+    async validateAnswer(answer) {
+        return await this.#response("TODO: Pass user's guess");
+    }
+    async #response(prompt) {
+        this.messages.push(prompt);
+        const response = await openai.chat.completions.create({
+            messages: this.messages,
+            model: "gpt-4o-mini"
+        }).choices[0].message;
+        this.messages.push(response);
+        return response;
+    }
+}
+
+module.exports = Conversation;

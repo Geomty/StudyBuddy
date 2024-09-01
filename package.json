@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/Geomty/RecessHacks-2024#readme",
   "dependencies": {
+    "@google/generative-ai": "^0.17.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "node-fetch": "^3.3.2",
     "node-fetch-commonjs": "^3.3.2",
-    "openai": "^4.57.0",
     "websocket": "^1.0.34",
     "ws": "^8.16.0"
   }

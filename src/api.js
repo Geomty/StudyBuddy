@@ -1,54 +1,21 @@
 require("dotenv").config();
-const OpenAI = require("openai");
-
-const openai = new OpenAI();
-
-/*
-async function startConversation() {
-    let conversation = {
-        messages: [
-            {
-                role: "system",
-                content: "yada yada" // TODO
-            }
-        ]
-    };
-    conversation.getResponse = async function(answer) {
-        conversation.messages.push({
-            role: "user",
-            content: answer
-        });
-        const completion = await openai.chat.completions.create({
-            messages: conversation.messages,
-            model: "gpt-4o"
-        }).choices.message;
-        conversation.messages.push(completion);
-        return completion.content;
-    }
-    return conversation.getResponse("Now give the first question");
-}
-*/
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 class Conversation {
     constructor(note) {
-        this.note = note;
-        this.messages = [];
-        this.#response("TODO: Send the notes, ask for one question about them each time a specific keyword is sent, ask for the right answer to the question and whether the user got it right (in the format of a stringified array) each time a guess to the previous question is sent");
+        this.chat = model.startChat({ systemInstruction: "Your task is to act as a study buddy for the user. When you are told to generate a question, only respond with the question, nothing else. When the user answers the question, respond with either \"Correct answer.\" and a small compliment (e.g. \"Good job!\"), or with \"Incorrect answer\" and the correct answer. If the user at any point asks for clarification, answer their question. TODO" });
     }
     async generateQuestion() {
-        return await this.#response("TODO: Keyword");
+        return await this.#response("Generate a question."); // role: system
     }
     async validateAnswer(answer) {
-        return await this.#response("TODO: Pass user's guess");
+        return await this.#response(answer); // role: user
     }
     async #response(prompt) {
-        this.messages.push(prompt);
-        const response = await openai.chat.completions.create({
-            messages: this.messages,
-            model: "gpt-4o-mini"
-        }).choices[0].message;
-        this.messages.push(response);
-        return response;
+        const result = await this.chat.sendMessage(prompt)
+        return result.response.text();
     }
 }
 

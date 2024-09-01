@@ -7,7 +7,7 @@ Run the following commands:
 git clone https://github.com/Geomty/RecessHacks-2024.git
 cd RecessHacks-2024
 npm install
-echo OPENAI_API_KEY=API_KEY > .env
+echo API_KEY=API_KEY > .env
 node .
 ```
-Remember to get an API key and configure the project properly.
+Remember to get an API key for Gemini and configure the project properly.

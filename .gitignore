@@ -134,3 +134,7 @@ src/.DS_Store
 
 package-lock.json
 src/database/
+.vscode/
+
+# For the Tailwind VS Code extension
+tailwind.config.js

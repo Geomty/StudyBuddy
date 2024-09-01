@@ -45,23 +45,37 @@ function send(event, type, data) {
 document.getElementById("generate-question").onclick = event => {
     if (!note.value) return;
     send(event, "send", note.value);
+    document.getElementById("generate-question").disabled = true;
+    document.getElementById("submit-answer").disabled = false;
+    answer.disabled = false;
 };
 
-document.getElementById("save-note").onclick = event => {
-    if (!note.value) return;
-    send(event, "save", note.value);
-};
+// document.getElementById("save-note").onclick = event => {
+//     if (!note.value) return;
+//     send(event, "save", note.value);
+// };
 
 document.getElementById("submit-answer").onclick = event => {
     if (!answer.value) return;
     send(event, "submit", answer.value);
+    document.getElementById("generate-question").disabled = false;
+    document.getElementById("submit-answer").disabled = true;
+    answer.disabled = true;
+    answer.value = "";
 };
 
-document.getElementById("request-list").onclick = event => {
-    send(event, "reqlist");
-};
+let focused = false;
+answer.onfocus = () => focused = true;
+answer.onfocusout = () => focused = false;
+document.addEventListener("keypress", event => {
+    if (event.key == "Enter" && focused) document.getElementById("submit-answer").click();
+});
 
-document.getElementById("request-note").onclick = event => {
-    if (!search.value) return;
-    send(event, "request", search.value);
-};
+// document.getElementById("request-list").onclick = event => {
+//     send(event, "reqlist");
+// };
+
+// document.getElementById("request-note").onclick = event => {
+//     if (!search.value) return;
+//     send(event, "request", search.value);
+// };

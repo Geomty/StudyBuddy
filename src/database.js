@@ -10,7 +10,7 @@ function getList() {
         if (!fs.existsSync("./src/database")) fs.mkdirSync("./src/database");
         fs.writeFileSync("./src/database/notes.json", JSON.stringify({ notes: [] }));
         return JSON.stringify({ notes: [] });
-    } else return JSON.parse(fs.readFileSync("./src/database/notes.json", "utf8")).notes.toString();
+    } else return fs.readFileSync("./src/database/notes.json", "utf8");
 }
 
 function saveNote(note) {

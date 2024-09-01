@@ -3,8 +3,11 @@ ws.addEventListener("open", async () => {
     console.log("Websocket connected");
 });
 
-const inputBox = document.getElementById("note");
-const outputBox = document.getElementById("server-message");
+const note = document.getElementById("note");
+const question = document.getElementById("question");
+const answer = document.getElementById("answer");
+const search = document.getElementById("search");
+const notes = document.getElementById("notes");
 
 ws.onmessage = event => {
     let message = JSON.parse(event.data);
@@ -13,16 +16,16 @@ ws.onmessage = event => {
             console.log("Debug: " + message.data);
             break;
         case "question": // Question for the user to answer
-            outputBox.innerText = message.data;
+            question.innerText = message.data;
             break;
         case "answer": // Correct answer to the previous question and whether the user got it right
-            outputBox.innerText = message.data;
+            question.innerText = message.data;
             break;
         case "note": // Another user's notes that are stored on the server
-            outputBox.innerText = message.data;
+            notes.innerText = message.data;
             break;
         case "list": // List of notes for the user to select from
-            outputBox.innerText = message.data;
+            notes.innerText = JSON.parse(message.data).notes.toString();
             break;
         default:
             console.log(`Invalid message from server: ${message.data}`);
@@ -39,12 +42,19 @@ function send(event, type, data) {
     ws.send(JSON.stringify(obj));
 }
 
-document.getElementById("send-note").onclick = event => {
-    send(event, "send", inputBox.value);
+document.getElementById("generate-questions").onclick = event => {
+    if (!note.value) return;
+    send(event, "send", note.value);
+};
+
+document.getElementById("save-note").onclick = event => {
+    if (!note.value) return;
+    send(event, "save", note.value);
 };
 
 document.getElementById("submit-answer").onclick = event => {
-    send(event, "submit", inputBox.value);
+    if (!answer.value) return;
+    send(event, "submit", answer.value);
 };
 
 document.getElementById("request-list").onclick = event => {
@@ -52,9 +62,6 @@ document.getElementById("request-list").onclick = event => {
 };
 
 document.getElementById("request-note").onclick = event => {
-    send(event, "request", inputBox.value);
-};
-
-document.getElementById("save-note").onclick = event => {
-    send(event, "save", inputBox.value);
+    if (!search.value) return;
+    send(event, "request", search.value);
 };

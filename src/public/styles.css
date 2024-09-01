@@ -1,5 +1,5 @@
 body {
-    background-color: #E8F6F6;
+    background-color: #00B2EA;
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
@@ -8,6 +8,15 @@ button {
     align-items: center;
     border-radius: 6px;
 } 
+
+#note{
+    font: white, 1.2em, "Lucida Console";
+}
+
+#generate-question{
+    background-color: #E8F6F6; 
+    font: white, 1.2em, "Lucida Console";
+}
 
 #send{
     position: absolute;

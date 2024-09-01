@@ -4,20 +4,25 @@ body {
 }
 
 button {
-    display: flex;
     padding: 10px;
     align-items: center;
     border-radius: 6px;
 } 
 
 #send{
-    
+    position: absolute;
 }
 
-#page {
+#chatpage{
+    background: #FFFFFF;
+    float: left;
+}
+
+#notepad{
+    float: right;
     padding: 10px;
     max-width: 100%;
-  }
+}
 
 #copyright {
     color: rgba(255, 255, 255, 0.4);

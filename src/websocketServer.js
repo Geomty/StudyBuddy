@@ -14,7 +14,7 @@ async function handleClient(client) {
         } else if (message.type === "reqlist") { // Client is requesting list of other users' notes (and ids)
             send("list", getList());
         } else if (message.type === "request") { // Client is requesting specific notes, and providing an id for the specific note
-            send("note", getNote(message.data));
+            send("note", getNote(message.data).toString());
         } else if (message.type === "save") { // Client is sending notes to be saved in the "database" (how kind of them to share)
             saveNote({ note: message.data, description: "TODO" });
         } else {

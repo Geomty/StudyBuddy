@@ -1,37 +1,22 @@
-body {
-    background-color: #00B2EA;
+.body {
+    background-color: #E8F6F6;
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-button {
+.button {
     padding: 10px;
     align-items: center;
-    border-radius: 6px;
 } 
 
 #note{
     font: white, 1.2em, "Lucida Console";
 }
 
-#generate-question{
-    background-color: #E8F6F6; 
-    font: white, 1.2em, "Lucida Console";
-}
-
-#send{
-    position: absolute;
-}
-
-#chatpage{
-    background: #FFFFFF;
-    float: left;
-}
-
-#notepad{
-    float: right;
+#submit-answer, #generate-question{
     padding: 10px;
-    max-width: 100%;
+    background-color: #00B2EA; 
 }
+
 
 #copyright {
     color: rgba(255, 255, 255, 0.4);

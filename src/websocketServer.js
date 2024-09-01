@@ -3,12 +3,12 @@ const { getNote, getList, saveNote } = require("./database");
 
 async function handleClient(client) {
     let conversation;
+    let note;
     send("debug", "Child process running");
     client.on("message", async m => {
         let message = JSON.parse(m.toString());
         if (message.type === "send") { // Client is sending notes and is waiting for the first question
-            conversation = new Conversation(message.data);
-            send("question", await conversation.generateQuestion());
+            send("question", await question(message.data));
         } else if (message.type === "submit") { // Client is sending answer to question and is waiting for a response and another question
             send("answer", await conversation.validateAnswer(message.data));
         } else if (message.type === "reqlist") { // Client is requesting list of other users' notes (and ids)
@@ -21,7 +21,17 @@ async function handleClient(client) {
             send("debug", "Invalid message.");
         }
     });
-
+    async function question(data) {
+        if (note != data) {
+            note = data;
+            conversation = new Conversation(data);
+        }
+        const q = await conversation.generateQuestion();
+        if (typeof q == "object") {
+            conversation = new Conversation(data);
+            return await question(data);
+        } else return q;
+    }    
     function send(type, data) {
         client.send(JSON.stringify({ type, data }));
     }

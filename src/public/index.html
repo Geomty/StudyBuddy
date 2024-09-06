@@ -14,30 +14,32 @@
       <h1 class="text-[3.5rem] text-black">StudyBuddy</h1>
     </div>
 
-    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-16">
+    <div class="absolute z-10 top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-16">
       <textarea id="note" placeholder="Paste your notes here" class="w-[25vw] h-[75vh] p-2 bg-yellow-200 resize text-lg text-black focus:outline-none rounded-xl"></textarea>
     </div>
 
-    <div class="absolute top-1/2 left-3/4 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-10">
-      <div class="flex flex-col justify-center items-center gap-16 p-8 border-2 border-yellow-900 rounded-md">
+    <div class="absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/2 flex flex-col gap-10">
+      <div class="flex flex-col justify-center items-center gap-8 p-8 border-2 border-yellow-900 rounded-md">
         <p class="text-2xl text-black">Correct answers: <span id="points">0</span></p>
-
-        <div class="flex justify-center items-center gap-4">
-          <button id="generate-question" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Generate question</button>
-        </div>
 
         <p id="question" class="text-2xl text-black text-center"></p>
 
         <div class="flex justify-center items-center gap-4">
-          <input id="answer" placeholder="Type your answer here" class="md:w-96 p-2 bg-yellow-200 text-xl text-black focus:outline-none rounded-xl" disabled="true">
+          <button id="generate-question" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Generate question</button>
+          <input id="answer" placeholder="Type your answer here" class="p-2 bg-yellow-200 text-xl text-black focus:outline-none rounded-xl" disabled="true">
           <button id="submit-answer" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap" disabled="true">Submit answer</button>
         </div>
       </div>
-      <div class="p-8 border-2 border-yellow-900 rounded-md flex justify-center items-center gap-4">
-        <button id="save-note" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Save note</button>
-        <input id="description" placeholder="Enter a description for your notes" class="p-2 bg-yellow-200 text-xl text-black focus:outline-none rounded-xl"></input>
-        <button id="request-list" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Request list</button>
-        <div id="list"></div>
+
+      <div id="db-container" class="p-8 border-2 border-yellow-900 rounded-md flex flex-col justify-center items-center gap-8">
+        <div class="flex justify-center items-center gap-4">
+          <input id="description" placeholder="Enter a description for your notes" class="p-2 bg-yellow-200 text-xl text-black focus:outline-none rounded-xl"></input>
+          <button id="save-note" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Save note</button>
+        </div>
+
+        <div class="flex justify-center items-center gap-4">
+          <button id="request-list" class="bg-yellow-300 text-xl px-3 py-1 rounded-full text-black text-nowrap">Request list</button>
+        </div>
       </div>
     </div>
 

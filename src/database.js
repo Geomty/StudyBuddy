@@ -14,7 +14,6 @@ function getList() {
 }
 
 function saveNote(note) {
-    console.log(note);
     let notes = JSON.parse(getList()).notes;
     fs.writeFileSync("./src/database/note" + notes.length + ".txt", note.note);
     notes.push(note.description);

@@ -7,7 +7,6 @@ const note = document.getElementById("note");
 const question = document.getElementById("question");
 const answer = document.getElementById("answer");
 const search = document.getElementById("search");
-const notes = document.getElementById("note");
 
 ws.onmessage = event => {
     let message = JSON.parse(event.data);
@@ -25,18 +24,22 @@ ws.onmessage = event => {
             }
             break;
         case "note": // Another user's notes that are stored on the server
-            notes.value = message.data;
+            note.value = message.data;
             break;
         case "list": // List of notes for the user to select from
+            if (!document.getElementById("list")) {
+                document.getElementById("db-container").innerHTML += '<div id="list" class="flex flex-col"></div>';
+            }
             document.getElementById("list").innerHTML = "";
             let list = JSON.parse(message.data).notes;
-            for (let i = 0; i < list.length; i++) {
+            for (let i in list) {
                 let newButton = document.createElement("button");
-                newButton.innerText = list[i];
+                newButton.className = "text-xl";
+                newButton.innerText = (Number(i)+1) + ": " + list[i];
                 document.getElementById("list").appendChild(newButton);
 
                 newButton.onclick = event => {
-                    send(event, "request", i+"");
+                    send(event, "request", i.toString());
                 };
             }
             break;
@@ -91,8 +94,3 @@ document.getElementById("save-note").onclick = event => {
 document.getElementById("request-list").onclick = event => {
     send(event, "reqlist");
 };
-
-// document.getElementById("request-note").onclick = event => {
-//     if (!search.value) return;
-//     send(event, "request", search.value);
-// };

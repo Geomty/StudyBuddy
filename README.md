@@ -13,3 +13,5 @@ echo API_KEY=API_KEY > .env
 node .
 ```
 Remember to get an API key for Gemini.
+
+![Screenshot](screenshot.png)
